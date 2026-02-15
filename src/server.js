@@ -6,24 +6,6 @@ import 'dotenv/config';
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
-app.use((req, res, next) => {
-  console.log(`Time: ${new Date().toLocaleString()}`);
-  next();
-});
-
-app.get('/notes', (req, res) => {
-  res.status(200).json({
-    message: 'Retrieved all notes',
-  });
-});
-
-app.get('/notes/:noteId', (req, res) => {
-  const {id_param} = req.params;
-  res.status(200).json({
-    message: 'Retrieved note with ID: ' + id_param,
-  });
-});
-// Middleware для парсингу JSON
 app.use(express.json());
 app.use(cors()); // Дозволяє запити з будь-яких джерел
 app.use(
@@ -42,6 +24,26 @@ app.use(
     },
   }),
 );
+
+
+app.use((req, res, next) => {
+  console.log(`Time: ${new Date().toLocaleString()}`);
+  next();
+});
+
+app.get('/notes', (req, res) => {
+  res.status(200).json({
+    message: 'Retrieved all notes',
+  });
+});
+
+app.get('/notes/:noteId', (req, res) => {
+  const {id_param} = req.params;
+  res.status(200).json({
+    message: 'Retrieved note with ID: ' + id_param,
+  });
+});
+// Middleware для парсингу JSON
 
 
 // Маршрут для тестування middleware помилки
