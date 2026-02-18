@@ -1,4 +1,3 @@
-// src/routes/studentsRoutes.js
 import { Router } from 'express';
 import { 
 	getAllNotes, 
