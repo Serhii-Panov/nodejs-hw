@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import { errors } from 'celebrate';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -22,6 +23,7 @@ app.use(notesRoutes); // Роутер для нотаток
 app.use(notFoundHandler);
 
 // Middleware для обробки помилок
+app.use(errors()); // Обробка помилок валідації celebrate
 app.use(errorHandler);
 
 app.listen(PORT, () => {
