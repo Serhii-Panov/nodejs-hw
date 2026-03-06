@@ -9,6 +9,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import notesRoutes from './routes/notesRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 await connectMongoDB();
 
@@ -22,6 +23,7 @@ app.use(cookieParser()); // Додаємо cookie-parser для роботи з 
 
 app.use(authRoutes); // Роутер для аутентифікації
 app.use(notesRoutes); // Роутер для нотаток
+app.use(userRoutes); // Роутер для користувачів
 
 // Middleware 404 (після всіх маршрутів)
 app.use(notFoundHandler);
